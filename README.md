@@ -1,6 +1,6 @@
 # Traceability
 
-Traceability is request/response trace tool for http request.
+Traceability is request/response trace tool for rack application.
 
 ## Installation
 
@@ -20,7 +20,44 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Use Traceability Web UI as Rails Engine,
+
+config/routes.rb
+
+```
+require 'traceability/web'
+
+MyApp::Application.routes.draw do
+  mount Traceability::Web, at: "/traceability"
+end
+```
+
+or rack up stand alone
+
+config.ru
+
+```
+require 'traceability/web'
+run Traceability::Web
+```
+
+and `rackup `
+
+## Config
+
+In Rails,
+
+config/initializer/traceability.rb
+
+```
+if defined?(Traceability)
+  Traceability.configure do |config|
+    config.store_file_path "tmp/traceability"
+    config.max_history_size = 30
+    config.request_filter = lambda { |uri, resposne_header| resposne_header["content-type"] == "application/json" }
+  end
+end
+```
 
 ## Contributing
 

@@ -1,0 +1,25 @@
+<div>
+  <h3 style="word-break:break-all">
+    <span class="label label-primary"><%= @traceability_request.method %></span>
+    <span><%= @traceability_request.url %></span>
+  </h3>
+  <hr>
+  <h3>Request:</h3>
+
+  <h5>Method</h5>
+  <pre><%= @traceability_request.method %></pre>
+
+  <h5>Query Params</h5>
+  <pre><%= pretty_json(@traceability_request.query_params) %></pre>
+
+  <h5>Form Params</h5>
+  <pre><%= pretty_json(@traceability_request.form_params) %></pre>
+
+  <h3>Response:</h3>
+  <h5>Status</h5>
+  <pre><%= @traceability_request.status %></pre>
+  <h5>Header</h5>
+  <pre><%= pretty_json(@traceability_request.response_header) %></pre>
+  <h5>Body</h5>
+  <pre><%= pretty_json(@traceability_request.response_body) %></pre>
+</div>

@@ -1,0 +1,10 @@
+<ul class="sidebar-nav">
+    <% Traceability::Request.all.sort_by{|r| r.created_at}.reverse.each do |request| %>
+      <li class="<%= active(request.uid) %>">
+          <a href='<%= url("/request/#{request.uid}") %>' class="text-ellipsis">
+            <span class="label label-primary"><%= request.method %></span>
+            <span ><%= request.url %></span>
+          </a>
+      </li>
+    <% end %>
+</ul>
